@@ -24,7 +24,7 @@ public class Schedule {
     @Column(nullable = false)
     private LocalDate date;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String startTime;
 
     @Column(nullable = false)

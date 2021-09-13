@@ -15,5 +15,6 @@ public interface EventMapper {
     @Mapping(target = "schedule.date",source = "schedule.date", dateFormat = "dd-MM-yyyy")
     Event toModel(EventDTO eventDTO);
 
+    @Mapping(target = "client.events",ignore = true)
     EventDTO toDTO(Event event);
 }
