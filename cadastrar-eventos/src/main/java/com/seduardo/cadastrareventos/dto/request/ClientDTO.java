@@ -41,7 +41,4 @@ public class ClientDTO {
     @Valid
     @NotEmpty
     private List<PhoneDTO> phones;
-
-    @Valid
-    private List<EventDTO> events;
 }

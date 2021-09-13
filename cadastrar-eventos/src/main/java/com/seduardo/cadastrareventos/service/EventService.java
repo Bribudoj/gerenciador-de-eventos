@@ -52,4 +52,19 @@ public class EventService {
         return eventRepository.findById(id)
                 .orElseThrow(() -> new EventNotFoundException(id));
     }
+
+    public void deleteById(Long id) throws EventNotFoundException {
+        verifyIfExists(id);
+        eventRepository.deleteById(id);
+    }
+
+    public MessageResponseDTO updateById(Long id, EventDTO eventDTO) throws EventNotFoundException {
+        verifyIfExists(id);
+
+        Event eventToUpdate = eventMapper.toModel(eventDTO);
+
+        Event updatedEvent = eventRepository.save(eventToUpdate);
+
+        return createMessageResponse(updatedEvent.getId(), "Updated event with ID");
+    }
 }

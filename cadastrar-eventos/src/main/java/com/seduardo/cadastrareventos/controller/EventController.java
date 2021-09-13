@@ -32,4 +32,16 @@ public class EventController {
     public EventDTO findById(@PathVariable Long id) throws EventNotFoundException {
         return eventService.findById(id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws EventNotFoundException {
+        eventService.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid EventDTO eventDTO) throws EventNotFoundException {
+        return eventService.updateById(id, eventDTO);
+    }
+
 }
