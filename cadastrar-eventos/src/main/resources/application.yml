@@ -2,10 +2,15 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/eventos
     driverClassName: org.postgresql.Driver
-    username:
-    password:
+    username: javasrv
+    password: javasrvpwd
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+springdoc:
+  swagger-ui:
+    path: /api/v1/docs
+  api-docs:
+    path: /api/v1/apis
