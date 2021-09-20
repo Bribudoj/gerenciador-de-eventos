@@ -45,4 +45,5 @@ public class EventServiceTest {
         assertThat(createdEventDTO.getClient(), is(equalTo(expectedEventDTO.getClient())));
         assertThat(createdEventDTO.getSchedule(), is(equalTo(expectedEventDTO.getSchedule())));
     }
+
 }

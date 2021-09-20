@@ -42,5 +42,4 @@ public class EventController {
     public EventDTO updateById(@PathVariable Long id, @RequestBody @Valid EventDTO eventDTO) throws EventNotFoundException {
         return eventService.updateById(id, eventDTO);
     }
-
 }

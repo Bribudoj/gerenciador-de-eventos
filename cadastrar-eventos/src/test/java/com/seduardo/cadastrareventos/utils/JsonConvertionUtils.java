@@ -14,7 +14,7 @@ public class JsonConvertionUtils {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.registerModules(new JavaTimeModule());
 
-            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(eventDTO);
+            return objectMapper.writeValueAsString(eventDTO);
         }catch (Exception e){
             throw new RuntimeException(e);
         }

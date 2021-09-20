@@ -3,6 +3,8 @@ package com.seduardo.cadastrareventos.controller;
 import com.seduardo.cadastrareventos.builder.EventDTOBuilder;
 import com.seduardo.cadastrareventos.dto.request.EventDTO;
 import com.seduardo.cadastrareventos.service.EventService;
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import static com.seduardo.cadastrareventos.utils.JsonConvertionUtils.asJsonString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
@@ -52,9 +55,10 @@ public class EventControllerTest {
         Mockito.when(eventService.createEvent(expectedEventDTO)).thenReturn(expectedEventDTO);
 
         //then
+
         mockMvc.perform(post(EVENT_URL_PATH)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(expectedEventDTO)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(expectedEventDTO)))
                 .andExpect(status().isCreated());
     }
 
