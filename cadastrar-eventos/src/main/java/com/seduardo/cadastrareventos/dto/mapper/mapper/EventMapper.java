@@ -1,7 +1,6 @@
-package com.seduardo.cadastrareventos.mapper;
+package com.seduardo.cadastrareventos.dto.mapper.mapper;
 
 import com.seduardo.cadastrareventos.dto.request.EventDTO;
-import com.seduardo.cadastrareventos.dto.request.ScheduleDTO;
 import com.seduardo.cadastrareventos.model.Event;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,5 +14,6 @@ public interface EventMapper {
     @Mapping(target = "schedule.date",source = "schedule.date", dateFormat = "dd-MM-yyyy")
     Event toModel(EventDTO eventDTO);
 
+    @Mapping(target = "schedule.date",source = "schedule.date", dateFormat = "dd-MM-yyyy")
     EventDTO toDTO(Event event);
 }

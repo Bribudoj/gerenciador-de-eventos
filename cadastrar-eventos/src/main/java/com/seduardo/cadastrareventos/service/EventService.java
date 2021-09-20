@@ -1,9 +1,8 @@
 package com.seduardo.cadastrareventos.service;
 
 import com.seduardo.cadastrareventos.dto.request.EventDTO;
-import com.seduardo.cadastrareventos.dto.response.MessageResponseDTO;
 import com.seduardo.cadastrareventos.exception.EventNotFoundException;
-import com.seduardo.cadastrareventos.mapper.EventMapper;
+import com.seduardo.cadastrareventos.dto.mapper.mapper.EventMapper;
 import com.seduardo.cadastrareventos.model.Event;
 import com.seduardo.cadastrareventos.repository.EventRepository;
 import lombok.AllArgsConstructor;
@@ -20,19 +19,13 @@ public class EventService {
     private EventRepository eventRepository;
     private final EventMapper eventMapper = EventMapper.INSTANCE;
 
-    public MessageResponseDTO createEvent(EventDTO eventDTO) {
+    public EventDTO createEvent(EventDTO eventDTO) {
 
         Event eventToSave = eventMapper.toModel(eventDTO);
 
         Event savedEvent = eventRepository.save(eventToSave);
 
-        return createMessageResponse(savedEvent.getId(), "Created event with ID");
-    }
-    private MessageResponseDTO createMessageResponse(Long id, String message) {
-        return MessageResponseDTO
-                .builder()
-                .message(message + id)
-                .build();
+        return eventMapper.toDTO(savedEvent);
     }
 
     public List<EventDTO> listAll() {
@@ -58,13 +51,13 @@ public class EventService {
         eventRepository.deleteById(id);
     }
 
-    public MessageResponseDTO updateById(Long id, EventDTO eventDTO) throws EventNotFoundException {
+    public EventDTO updateById(Long id, EventDTO eventDTO) throws EventNotFoundException {
         verifyIfExists(id);
 
         Event eventToUpdate = eventMapper.toModel(eventDTO);
 
         Event updatedEvent = eventRepository.save(eventToUpdate);
 
-        return createMessageResponse(updatedEvent.getId(), "Updated event with ID");
+        return eventMapper.toDTO(updatedEvent);
     }
 }

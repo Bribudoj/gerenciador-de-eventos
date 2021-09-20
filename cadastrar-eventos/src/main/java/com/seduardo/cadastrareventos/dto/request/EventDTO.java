@@ -23,4 +23,6 @@ public class EventDTO {
     @Valid
     private ScheduleDTO schedule;
 
+
+
 }

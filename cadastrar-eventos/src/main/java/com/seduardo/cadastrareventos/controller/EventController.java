@@ -1,7 +1,6 @@
 package com.seduardo.cadastrareventos.controller;
 
 import com.seduardo.cadastrareventos.dto.request.EventDTO;
-import com.seduardo.cadastrareventos.dto.response.MessageResponseDTO;
 import com.seduardo.cadastrareventos.exception.EventNotFoundException;
 import com.seduardo.cadastrareventos.service.EventService;
 import lombok.AllArgsConstructor;
@@ -21,7 +20,7 @@ public class EventController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createEvent(@RequestBody @Valid EventDTO eventDTO){
+    public EventDTO createEvent(@RequestBody @Valid EventDTO eventDTO){
         return eventService.createEvent(eventDTO);
     }
 
@@ -40,7 +39,7 @@ public class EventController {
     }
 
     @PutMapping("/{id}")
-    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid EventDTO eventDTO) throws EventNotFoundException {
+    public EventDTO updateById(@PathVariable Long id, @RequestBody @Valid EventDTO eventDTO) throws EventNotFoundException {
         return eventService.updateById(id, eventDTO);
     }
 
