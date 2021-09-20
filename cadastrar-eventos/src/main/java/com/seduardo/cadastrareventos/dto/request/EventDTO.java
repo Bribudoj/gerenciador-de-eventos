@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
@@ -17,9 +18,11 @@ public class EventDTO {
 
     private Long id;
 
+    @NotNull
     @Valid
     private ClientDTO client;
 
+    @NotNull
     @Valid
     private ScheduleDTO schedule;
 
